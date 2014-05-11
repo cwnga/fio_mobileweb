@@ -27,6 +27,9 @@
                                 },
                                 "footer": {
                                     "type": "Footer"
+                                },
+                                "panel": {
+                                    "type": "Panel"
                                 }
                             }
                         }
@@ -37,14 +40,15 @@
                                 "http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css",
                             "http://demos.jquerymobile.com/1.4.2/css/themes/default/jquery.mobile-1.4.2.min.css",
                             "http://demos.jquerymobile.com/1.4.2/_assets/css/jqm-demos.css"
-                                ]
+                                ],
+                                "js": [
+                                    "http://demos.jquerymobile.com/1.4.2/js/jquery.js",
+                                "http://demos.jquerymobile.com/1.4.2/_assets/js/index.js",
+                                "http://demos.jquerymobile.com/1.4.2/js/jquery.mobile-1.4.2.min.js"
+                                    ]
+
                         },
                         "bottom": {
-                            "js": [
-                                "http://demos.jquerymobile.com/1.4.2/js/jquery.js",
-                            "http://demos.jquerymobile.com/1.4.2/_assets/js/index.js",
-                            "http://demos.jquerymobile.com/1.4.2/js/jquery.mobile-1.4.2.min.js"
-                                ]
                         }
                     }
                 }
