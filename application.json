@@ -13,14 +13,7 @@
                         "config": {
                             "children": {
                                 "header": {
-                                    "type": "Header",
-                                    "assets": {
-                                        "top": {
-                                            "css": [
-                                                ]
-                                        }
-                                    }
-
+                                    "type": "Header"
                                 },
                                 "body": {
                                     "type": "Body"
@@ -29,7 +22,16 @@
                                     "type": "Footer"
                                 },
                                 "panel": {
-                                    "type": "Panel"
+                                    "type": "Panel",
+                                    "config": {
+                                        "assets": {
+                                            "top": {
+                                                "js": [
+                                                    "/static/fio_mobileweb/assets/Panel/js/Panel.js"
+                                                    ]
+                                            }
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -41,11 +43,11 @@
                             "http://demos.jquerymobile.com/1.4.2/css/themes/default/jquery.mobile-1.4.2.min.css",
                             "http://demos.jquerymobile.com/1.4.2/_assets/css/jqm-demos.css"
                                 ],
-                                "js": [
-                                    "http://demos.jquerymobile.com/1.4.2/js/jquery.js",
-                                "http://demos.jquerymobile.com/1.4.2/_assets/js/index.js",
-                                "http://demos.jquerymobile.com/1.4.2/js/jquery.mobile-1.4.2.min.js"
-                                    ]
+                            "js": [
+                                "http://demos.jquerymobile.com/1.4.2/js/jquery.js",
+                            "http://demos.jquerymobile.com/1.4.2/_assets/js/index.js",
+                            "http://demos.jquerymobile.com/1.4.2/js/jquery.mobile-1.4.2.min.js"
+                                ]
 
                         },
                         "bottom": {
