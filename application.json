@@ -54,8 +54,61 @@
                         }
                     }
                 }
+            },
+
+            "shake_news": {
+                "type": "HTMLFrameMojit",
+                "config": {
+                    "deploy": true,
+                    "title": "Trib - YUI/Mojito Developer Dashboard",
+                    "child": {
+                        "type": "PageLayout",
+                        "config": {
+                            "children": {
+                                "header": {
+                                    "type": "Header"
+                                },
+                                "body": {
+                                    "type": "ShakeNews"
+                                },
+                                "footer": {
+                                    "type": "Footer"
+                                },
+                                "panel": {
+                                    "type": "Panel",
+                                    "config": {
+                                        "assets": {
+                                            "top": {
+                                                "js": [
+                                                    "/static/fio_mobileweb/assets/Panel/js/Panel.js"
+                                                    ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "assets": {
+                        "top": {
+                            "css": [
+                                "http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css",
+                            "http://demos.jquerymobile.com/1.4.2/css/themes/default/jquery.mobile-1.4.2.min.css",
+                            "http://demos.jquerymobile.com/1.4.2/_assets/css/jqm-demos.css"
+                                ],
+                            "js": [
+                                "http://demos.jquerymobile.com/1.4.2/js/jquery.js",
+                            "http://demos.jquerymobile.com/1.4.2/_assets/js/index.js",
+                            "http://demos.jquerymobile.com/1.4.2/js/jquery.mobile-1.4.2.min.js"
+                                ]
+
+                        },
+                        "bottom": {
+                        }
+                    }
+                }
             }
-        },
+},
         "staticHandling": {
             "forceUpdate": true
         }

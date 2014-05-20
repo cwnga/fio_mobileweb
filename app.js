@@ -27,7 +27,10 @@ app.use(libmojito.middleware());
 app.mojito.attachRoutes();
 
 // Allow anonymyous mojit instances w/ actions to be dispatched
+app.get('/hack/shake_news', libmojito.dispatch("shake_news.index"))
 app.get('/:mojit/:action', libmojito.dispatch("{mojit}.{action}"));
+app.get('/hack/shake_news', libmojito.dispatch("shake_news.index"))
+
 app.get('/', libmojito.dispatch('tribframe.index'));
 
 app.listen(app.get('port'), function () {
