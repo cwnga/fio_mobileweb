@@ -1,16 +1,20 @@
 {
-    "name": "fio_mobileweb",
-    "description": "My Mojito application",
-    "version": "0.0.1",
-    "author": "",
-    "contributors": [],
-    "dependencies": {
-        "express": "3.x",
-        "mojito": "~0.9",
-        "nodemon": "1.0.17~"
-    },
-    "engines": {
-        "node": ">=0.8"
-    },
-    "main": "./app.js"
+    "name": "model_yql",
+        "description": "My Mojito application",
+        "version": "0.0.1",
+        "author": "",
+        "contributors": [],
+        "dependencies": {
+            "debug": "*",
+            "mojito": "~0.9.0",
+            "nodemon": "1.0.17~"
+        },
+        "devDependencies": {
+            "mojito-cli": ">= 0.2.0"
+        },
+
+        "engines": {
+            "node": ">=0.8"
+        },
+        "main": "./app.js"
 }
