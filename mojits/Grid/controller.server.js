@@ -1,10 +1,10 @@
 /*jslint anon:true, sloppy:true, nomen:true*/
-YUI.add('shakenews', function(Y, NAME) {
+YUI.add('grid', function(Y, NAME) {
 
 /**
- * The shakenews module.
+ * The grid module.
  *
- * @module shakenews
+ * @module grid
  */
 
     /**
@@ -28,7 +28,6 @@ YUI.add('shakenews', function(Y, NAME) {
                     return;
                 }
                 ac.assets.addCss('./index.css');
-
                 ac.done({
                     status: 'Mojito is working.',
                     data: data
