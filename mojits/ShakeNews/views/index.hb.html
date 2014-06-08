@@ -1,5 +1,13 @@
-<div role="main" class="ui-content jqm-content jqm-fullwidth">
-    <ul data-role="listview" data-inset="true">
+<div role="main" class="ui-content jqm-content jqm-fullwidth" >
+<button class="ui-btn" id="count_button">Button</button>
+<div id="count_div"></div>
+<div id="output"></div>
+
+
+
+
+
+    <ul data-role="listview" data-inset="true" id ="listview">
 
         {{#each data}}
             <li><a href="{{href}}">
@@ -13,3 +21,149 @@
         {{/each}}
     </ul>
 </div><!-- /content -->
+
+<script src="http://yui.yahooapis.com/3.17.2/build/yui/yui-min.js"></script>
+<script>
+// Create a YUI sandbox on your page.
+YUI().use('jsonp', 'jsonp-url','node', 'event', function (Y) {
+          // Access DOM nodes.
+          var namespace = 'dev';
+          Y.namespace(namespace).shake_times = 0;
+          milliseconds = 5000;
+
+          preX = 0;
+          thresholdX = 15;///avg
+          maxtholdX = 0;
+
+
+          start = function (){
+          window.ondevicemotion = function(event) {
+          x = event.accelerationIncludingGravity.x
+          y = event.accelerationIncludingGravity.y
+          z = event.accelerationIncludingGravity.z
+          diff = (Math.abs(x) - Math.abs(preX));
+          if (diff > thresholdX ){
+
+          Y.namespace(namespace).shake_times++;
+
+          }
+          }
+          }
+          start();
+
+
+          Y.namespace(namespace).timer_send_fun = function (){
+              var oneElementById     = Y.one('#count_div');
+              namespace = 'dev';
+              oneElementById.setHTML( Y.namespace(namespace).shake_times);
+              shake_times = Y.namespace(namespace).shake_times;
+              define_count = {
+                  count_happy: {lower_bound: 0 , upper_bound: 10, motion: "happy", img: "http://artyougrewupwith.com/ufiles/image/Mr_Happy.jpg"},
+                  count_angry: {lower_bound: 11 , upper_bound: 999, motion: "angry", img: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTbcWmenwN8tBZT9Qn-kyfRzGN-5mS9DTYilDT7Z7vdHgYwf97KsQ"},
+              };
+              define_count_list = [define_count.count_happy, define_count.count_angry];
+              for (i in define_count_list) {
+                  motion_obj = define_count_list[i];
+                  if ( shake_times>0 && shake_times >= motion_obj.lower_bound  && shake_times <= motion_obj.upper_bound ) {
+                      img = motion_obj.img;
+                      tag = motion_obj.motion;
+                      oneElementById.setHTML(tag);
+                      Y.namespace(namespace).get_data(tag);
+                      Y.namespace(namespace).shake_times = 0;
+                  }
+              }
+
+
+          };
+
+          window.setInterval(function(){Y.namespace(namespace).timer_send_fun()} , milliseconds);
+       Y.namespace(namespace).get_data =     function (emotion) {
+
+                                    var url = "http://192.168.0.142:8666/hack/api_emotions_news?callback={callback}&emotion="+emotion;
+                                    console.log(url);
+
+
+                                    function handleJSONP(response) {
+                                        // response is a JavaScript object. No parsing necessary
+                                    node = Y.one("#listview");
+                                    //output_html =  '<ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">';
+                                    output_html = '';
+
+
+                                    if (response) {
+                                        message = response.message;
+                                        for (i in message) {
+                                            href =  message[i].href;
+                                            image =  message[i].image;
+                                            title =  message[i].title;
+                                            content =  message[i].content;
+
+
+                                            output_html = output_html+ '<li class="ui-li-has-thumb ui-first-child"><a href="'+href+'"  class="ui-btn ui-btn-icon-right ui-icon-carat-r">';
+                                            if (image !="") {
+                                                output_html = output_html+ ' <img src="'+image+'">';
+                                            }
+
+                                            output_html = output_html+ '<h2>'+title+'</h2>  ';
+                                            output_html = output_html+ '<p>'+content+'</p> ';
+                                            output_html = output_html+ '</li>';
+
+                                        }
+
+                                      //output_html = output_html+ '</ul>';
+
+                                      node.setHTML(output_html);
+
+                                    }
+                                    }
+
+                                        Y.jsonp(url, handleJSONP);
+
+
+          }
+
+          Y.one('#count_button').on('click', function () {
+                                    Y.namespace(namespace).shake_times++;
+ //                                   var url = "http://localhost:8666/hack/api_emotions_news?callback={callback}";
+
+ //                                   function handleJSONP(response) {
+ //                                       // response is a JavaScript object. No parsing necessary
+ //                                   console.log("handleJSONPhandleJSONPhandleJSONPhandleJSONP");
+ //                                   console.log(response);
+ //                                   node = Y.one("#listview");
+ //                                      output_html =  '<ul data-role="listview" data-inset="true" class="ui-listview ui-listview-inset ui-corner-all ui-shadow">';
+
+ //                                   if (response) {
+ //                                       message = response.message;
+ //                                       for (i in message) {
+ //                                           href =  message[i].href;
+ //                                           image =  message[i].image;
+ //                                           title =  message[i].title;
+ //                                           content =  message[i].content;
+
+
+ //                                           output_html = output_html+ '<li class="ui-li-has-thumb ui-first-child"><a href="'+href+'"  class="ui-btn ui-btn-icon-right ui-icon-carat-r">';
+ //                                           if (image !="") {
+ //                                               output_html = output_html+ ' <img src="'+image+'">';
+ //                                           }
+
+ //                                           output_html = output_html+ '<h2>'+title+'</h2>  ';
+ //                                           output_html = output_html+ '<p>'+content+'</p> ';
+ //                                           output_html = output_html+ '</li>';
+
+ //                                       }
+
+ //                                     output_html = output_html+ '</ul>';
+ //                                     node.setHTML(output_html);
+
+ //                                   }
+ //                                   }
+
+ //                                       Y.jsonp(url, handleJSONP);
+
+                                   });
+
+});
+</script>
+
+

@@ -3,6 +3,12 @@
 {
     "settings": [ "master" ],
         "specs": {
+
+
+
+                "api_emotions_news": {
+                            "type": "ShakeNews"
+                },
                 "frame": {
                     "type": "HTMLFrameMojit",
                     "config": {
@@ -85,7 +91,16 @@
                                     "type": "Header"
                                 },
                                 "body": {
-                                    "type": "ShakeNews"
+                                    "type": "ShakeNews",
+                                    "config": {
+                                        "assets": {
+                                            "top": {
+                                                "js": [
+                                                    "/static/fio_mobileweb/assets/js/socket.js"
+                                                    ]
+                                            }
+                                        }
+                                    }
                                 },
                                 "footer": {
                                     "type": "Footer"

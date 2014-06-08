@@ -1,0 +1,20 @@
+{{#if callback}}{{callback}}({{/if}}
+{message:[
+
+{{#each data}} {
+    href: "{{href}}",
+image: "{{#if image}}{{image}}{{/if}}",
+title: "{{title}}",
+content: "{{content}}"
+},
+        {{/each}}
+ {
+    href: "",
+image: "",
+title: "",
+content: ""
+}
+        ]
+        }
+{{#if callback}}){{/if}}
+

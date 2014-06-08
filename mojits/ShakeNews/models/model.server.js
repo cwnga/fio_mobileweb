@@ -35,9 +35,13 @@ YUI.add('shakenews-model', function(Y, NAME) {
              init: function(config) {
                  this.config = config;
              },
-             getData: function(callback) {
+             getData: function(input_emotion, callback) {
                  // Handle empty.
-                 var url = 'https://tw.news.yahoo.com/sentiment/angry/';
+                 emotion = 'happy';
+                 if (input_emotion) {
+                     emotion  = input_emotion;
+                 }
+                 var url = 'https://tw.news.yahoo.com/sentiment/'+input_emotion+'/';
                  var xpath = '//*[@id="mediasentimentlisttemp"]/div/ul/li/div/div';
 
                  var select = "select * from html where url='"+url+"' and xpath='"+xpath+"'";
@@ -66,6 +70,9 @@ YUI.add('shakenews-model', function(Y, NAME) {
                           template = {};
                           rowP = row.p;
                           content = rowP.content;
+                          //content = content.replace(" ", "");
+
+                          content = content.replace("\n", "");
                           title = rowP.a.span;
                           href = rowP.a.href;
                           href = href.match(/-(.*).html/gi);

@@ -21,8 +21,32 @@ YUI.add('shakenews', function(Y, NAME) {
          * @param ac {Object} The ActionContext that provides access
          *        to the Mojito API.
          */
+
+     api_get: function(ac) {
+         var emotion = ac.params.getFromUrl('emotion');
+         var callback_name = ac.params.getFromUrl('callback');
+         ac.models.get('model').getData(emotion, function(err, data) {
+             if (err) {
+                 ac.error(err);
+                 return;
+             }
+             http = ac.http.getRequest();
+             ac.http.setHeader('Content-Type', 'application/json; charset=utf-8');
+             console.log(http);
+
+             //data= JSON.stringify(data);
+             console.log(data);
+             ac.done({
+                 callback: callback_name,
+                 data: data
+             },  { name: "api_get" });
+         });
+     },
+
+
         index: function(ac) {
-            ac.models.get('model').getData(function(err, data) {
+            var emotion = ac.params.getFromUrl('emotion');
+            ac.models.get('model').getData(emotion, function(err, data) {
                 if (err) {
                     ac.error(err);
                     return;
@@ -38,4 +62,4 @@ YUI.add('shakenews', function(Y, NAME) {
 
     };
 
-}, '0.0.1', {requires: ['mojito', 'mojito-assets-addon', 'mojito-models-addon']});
+}, '0.0.1', {requires: ['mojito', 'mojito-assets-addon', 'mojito-models-addon', 'mojito-params-addon','mojito-http-addon']});
